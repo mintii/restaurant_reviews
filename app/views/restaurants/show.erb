@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="restaurant_info">
+    <h1>
+      <%= @restaurant.name %>
+    </h1>
+
+    <h2>Cuisine: <%= @restaurant.cuisine %></h2>
+
+    <h2>Located At: <%= @restaurant.address %>, <%= @restaurant.city %> <%= @restaurant.state %> <%= @restaurant.zipcode %>
+    </h2>
+  </div>
+
+  <% if logged_in? %>
+
+    <% if @review %>
+        <h3>Thanks you for the review!</h3>
+
+    <% elsif current_user.has_reviewed?(@restaurant.id) %>
+
+        <h3>Click here to edit your review.</h3>
+    <% else %>
+        <div class="restaurant_reviews">
+          <h3>Reviews</h3>
+          <form method="post" action="/reviews">
+            <input type="hidden" name="review[restaurant_id]" value="<%= @restaurant.id %>">
+
+            <label for="rating">Rating:</label>
+            <select id="rating" name="review[rating]">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+
+            <label for="body">Body:</label>
+            <textarea type="text" id="body" name="review[body]"></textarea>
+            <input type="submit" value="Review it!">
+          </form>
+        </div>
+    <% end %>
+
+
+  <h2>Reviews</h2>
+
+  <% @restaurant.reviews.each do |review| %>
+  <div class="individual_review">
+    <p>Rating: <%= review.rating %></p>
+
+    <p><%= review.body %></p>
+  </div>
+
+  <% end %>
+
+  <% else %>
+  <p><a href="/login">Login to Review</a></p>
+  <% end  %>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

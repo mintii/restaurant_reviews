@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="profile_header">
+    <h1> <%= @user.email %>'s Profile! </h1>
+    <ul>
+      <li><a href="/restaurants/new">Add a Restaurant</a></li>
+    </ul>
+  </div>
+
+
+<div class="review_body">
+  <h2>Reviews</h2>
+  <% @user_reviews.each do |review| %>
+    <div class="user_profile_review_individual">
+      <h3>
+        <a href="/restaurants/<%= review.restaurant.id %>"><%= review.restaurant.name %></a>
+      </h3>
+        <p>
+          <%= review.body %>
+        </p>
+      <p>Written on: <%= review.created_at %><p>
+    </div>
+  <% end %>
+</div>
+
+  <h2>Discovered Restaurants</h2>
+  <div>
+     <ul>
+       <% @user_restaurants.each do |restaurant|  %>
+         <li>
+            <a href="/restaurant/<%= restaurant.id %>"><%= restaurant.name %></a>
+          </li>
+       <% end %>
+     </ul>
+  </div>
+
+</div>

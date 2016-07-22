@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Sign up today to learn more about delicious restaurants!</h1>
+
+  <% if @errors %>
+    <%= @errors %>
+  <% end %>
+
+  <form method="post" action="/users">
+    <div>
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="user[email]">
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="user[password]">
+    </div>
+    <input type="submit" value="Create Account!">
+  </form>
+</div>

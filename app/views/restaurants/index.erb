@@ -1,0 +1,38 @@
+<div class="container">
+
+  <div class="restaurant_wrapper">
+    <% @restaurants.each do |restaurant| %>
+    <a href="/restaurants/<%= restaurant.id %>">
+      <div class="restaurant_card">
+        <div class="restaurant_details">
+          <h4><%= restaurant.name %></h4>
+          <span>
+            <%= restaurant.city %>
+            <%= restaurant.state %>
+          </span>
+        </div>
+
+          <% if logged_in? && current_user.id == restaurant.user_id %>
+            <div class="card_bottom_left">
+              <a href="/restaurants/<%= restaurant.id %>/edit">Edit Restaurant</a>
+            </div>
+            <div class="card_bottom_right">
+              <form method="post" action="/restaurants/<%= restaurant.id %>">
+                <input type="hidden" name="_method" value="delete">
+                <input type="submit" value="Delete">
+              </form>
+            </div>
+          <% end %>
+
+      </div>
+    </a>
+    <% end %>
+  </div>
+
+  <ul>
+    <li id="new-restaurant-button">
+      <a href="/restaurants/new">Add a Restaurant</a>
+    </li>
+  </ul>
+
+</div>

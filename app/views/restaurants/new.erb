@@ -1,0 +1,33 @@
+<div class="container">
+  <% if @errors %>
+    <%= @errors %>
+  <% end %>
+
+  <h1>Create a Restaurant</h1>
+  <form class="new_restaurant" method="post" action="/restaurants">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="restaurant[name]">
+
+    <label for="cuisine">Cuisine:</label>
+      <select id="cuisine" name="restaurant[cuisine]">
+        <% @cuisine.each do |type| %>
+          <option value="<%= type.downcase %>"> <%= type %> </option>
+        <% end %>
+      </select>
+
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="restaurant[address]">
+
+    <label for="city">City:</label>
+    <input type="text" id="city" name="restaurant[city]">
+
+    <label for="state">State:</label>
+    <input type="text" id="state" name="restaurant[state]">
+
+    <label for="zipcode">Zip:</label>
+    <input type="text" id="zipcode" name="restaurant[zipcode]">
+
+    <input type="submit" value="Create Restaurant">
+  </form>
+
+</div>
